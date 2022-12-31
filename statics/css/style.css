@@ -31,7 +31,7 @@ body {
   line-height: 1.6;
   font-weight: 300;
   font-family: 'Lato', sans-serif;
-  color: #777;
+  color: rgb(88, 88, 88);
   padding: 3rem;
   min-height: 100vh;
   display: -webkit-box;
@@ -104,7 +104,7 @@ body {
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
 .alert--success {
-  background-color: #20bf6b;
+  background-color: #1d2599;
 }
 .alert--error {
   background-color: #eb4d4b;
@@ -118,10 +118,10 @@ body {
     linear,
     left top,
     right top,
-    from(#7dd56f),
-    to(#28b487)
+    from(#3436aa),
+    to(#289fb4)
   );
-  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  background-image: linear-gradient(to right, #3436aa, #289fb4);
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 0.1rem;
@@ -156,13 +156,13 @@ body {
     linear,
     left top,
     right bottom,
-    from(rgba(125, 213, 111, 0.85)),
-    to(rgba(40, 180, 135, 0.85))
+    from(#3638be),
+    to(#289fb4)
   );
   background-image: linear-gradient(
     to bottom right,
-    rgba(125, 213, 111, 0.85),
-    rgba(40, 180, 135, 0.85)
+    rgba(48, 73, 189, 0.85),
+    rgba(40, 140, 180, 0.85)
   );
 }
 
@@ -219,7 +219,7 @@ body {
 
 .btn:focus {
   outline: none;
-  background-color: #2e864b;
+  background-color: #3548af;
 }
 
 .btn--white {
@@ -231,11 +231,11 @@ body {
 }
 
 .btn--green {
-  background-color: #55c57a;
+  background-color: #2729a1;
   color: #fff;
 }
 .btn--green::after {
-  background-color: #55c57a;
+  background-color: #282a94;
 }
 
 .btn--small {
@@ -246,7 +246,7 @@ body {
 .btn-small,
 .btn-small:link,
 .btn-small:visited {
-  background-color: #55c57a;
+  background-color: #274496;
   color: #fff;
   font-size: 1.4rem;
   padding: 1.25rem 3rem;
@@ -262,22 +262,22 @@ body {
 }
 
 .btn-small:hover {
-  background-color: #7dd56f;
+  background-color: #2136ac;
 }
 
 .btn-text:link,
 .btn-text:visited {
-  color: #55c57a;
+  color: #252da0;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 1px solid #55c57a;
+  border-bottom: 1px solid #2341a7;
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .btn-text:hover {
-  background-color: #55c57a;
+  background-color: #2c419e;
   color: #fff;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -294,12 +294,12 @@ body {
 
 .btn-text:focus {
   outline: none;
-  outline: 3px solid #55c57a;
+  outline: 3px solid #3019b1;
   outline-offset: 3px;
 }
 
 .header {
-  background-color: #444;
+  background-color: #124;
   padding: 0 5rem;
   height: 8rem;
   position: relative;
@@ -372,10 +372,10 @@ body {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#22249b),
+    to(#2898b4)
   );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background-image: linear-gradient(to right bottom, #22249b, #2898b4);
   opacity: 0.85;
 }
 
@@ -483,7 +483,7 @@ body {
 .overview-box__icon {
   height: 2.25rem;
   width: 2.25rem;
-  fill: #55c57a;
+  fill: #1a3197;
 }
 .overview-box__label {
   font-weight: 700;
@@ -581,10 +581,10 @@ body {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#271c8b),
+    to(#287cb4)
   );
-  background: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background: linear-gradient(to right bottom, #271c8b, #287cb4);
   clip-path: polygon(
     0 var(--section-rotate),
     100% 0,
@@ -669,7 +669,7 @@ body {
   margin-right: 1px;
 }
 .reviews__star--active {
-  fill: #55c57a;
+  fill: #192fa7;
 }
 .reviews__star--inactive {
   fill: #bbb;
@@ -719,10 +719,10 @@ body {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#203297),
+    to(#2881b4)
   );
-  background: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background: linear-gradient(to right bottom, #203297, #2881b4);
   z-index: 10;
   -webkit-transform: translate(-35%, -50%);
   transform: translate(-35%, -50%);
@@ -776,10 +776,10 @@ body {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#0e2797),
+    to(#2870b4)
   );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background-image: linear-gradient(to right bottom, #0e2797, #2870b4);
   padding: 4rem 0;
 }
 .user-view__content {
@@ -843,7 +843,7 @@ body {
 }
 .footer__nav a:hover,
 .footer__nav a:active {
-  color: #55c57a;
+  color: #1e1c9b;
 }
 .footer__copyright {
   justify-self: end;
@@ -899,7 +899,7 @@ body {
 .nav__el:visited {
   color: #f7f7f7;
   text-transform: uppercase;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   text-decoration: none;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1113,10 +1113,10 @@ body {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#212c8f),
+    to(#287cb4)
   );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background-image: linear-gradient(to right bottom, #212c8f, #287cb4);
   opacity: 0.7;
 }
 .card__picture-img {
@@ -1160,7 +1160,7 @@ body {
 .card__icon {
   height: 2rem;
   width: 2rem;
-  fill: #55c57a;
+  fill: #212e9e;
 }
 .card__footer {
   background-color: #f7f7f7;
@@ -1254,7 +1254,7 @@ body {
 }
 .form__input:focus {
   outline: none;
-  border-bottom: 3px solid #55c57a;
+  border-bottom: 3px solid #1b408f;
 }
 .form__input:focus:invalid {
   border-bottom: 3px solid #ff7730;
@@ -1301,22 +1301,22 @@ body {
 }
 
 .form__upload:focus + label {
-  outline: 3px solid #55c57a;
+  outline: 3px solid #1c4696;
   outline-offset: 3px;
 }
 
 .form__upload + label {
-  color: #55c57a;
+  color: #112996;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 1px solid #55c57a;
+  border-bottom: 1px solid #1458b1;
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   cursor: pointer;
 }
 .form__upload + label:hover {
-  background-color: #55c57a;
+  background-color: #1458b1;
   color: #fff;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
