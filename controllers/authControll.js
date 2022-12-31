@@ -1,7 +1,7 @@
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/sendEmail');
+//const sendEmail = require('./../utils/sendEmail');
 
 const crypto = require('crypto');
 const { promisify } = require('util');
@@ -71,7 +71,7 @@ const logout = (req, res) =>{
     res.cookie('jwt', 'loggedout', {
         expires: new Date(Date.now() + 10 * 1000),
         httpOnly: true
-    });
+    }); //manda um cookie invalido
     res.status(200).json({ status: 'success' });
 }
 
@@ -116,35 +116,35 @@ const protectRoutes = catchAsync(async (req, res, next) =>{
 });
 
 // render só para users loggued
-const renderForOnlyLoggued = async (req, res, next) =>{
-    // usuario logado...
-    if (req.cookies.jwt) {
-    try{
+// const renderForOnlyLoggued = async (req, res, next) =>{
+//     // usuario logado...
+//     if (req.cookies.jwt) {
+//     try{
 
-    // verifica o cookie 
-    const decodeTk = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
-    // promisify pq verify() sem callback é sync
+//     // verifica o cookie 
+//     const decodeTk = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+//     // promisify pq verify() sem callback é sync
     
-    // verifica se o user existe com base no id token (payload)
-    const nowUser = await User.findById(decodeTk.id);
-    if(!nowUser) {
-        return next();
-    }
+//     // verifica se o user existe com base no id token (payload)
+//     const nowUser = await User.findById(decodeTk.id);
+//     if(!nowUser) {
+//         return next();
+//     }
 
-    // verifica se o user mudou a senha dps do token ser emitido (instace method no models)
-    if(nowUser.changedPassAfterTk(decodeTk.iat)){
-        return next();
-    }
+//     // verifica se o user mudou a senha dps do token ser emitido (instace method no models)
+//     if(nowUser.changedPassAfterTk(decodeTk.iat)){
+//         return next();
+//     }
 
-    // substitui o valor da var "user" vindo dos os middlewares
-    res.locals.user = nowUser; // associa a var "user" nos pug templates 
-    return next();
-} catch(err) {
-    return next()
-}
-}
-    next();
-};
+//     // substitui o valor da var "user" vindo dos os middlewares
+//     res.locals.user = nowUser; // associa a var "user" nos pug templates 
+//     return next();
+// } catch(err) {
+//     return next()
+// }
+// }
+//     next();
+// };
 
 // pega o req.user do mid anterior
 const rolesForUsers = (...roles) =>{ // dessa forma possibilita passar parâmetros para a mid func (closure)
@@ -154,76 +154,9 @@ const rolesForUsers = (...roles) =>{ // dessa forma possibilita passar parâmetr
         }
     next();
     };
+    // rolesForUsers('user' || 'moderators' || 'admin') 
 };
-// rolesForUsers('user' || 'moderators' || 'admin') 
 
-const forgotPass = catchAsync( async(req, res, next) => {
-    // pega email na POST req
-    const user = await User.findOne({ email: req.body.email });
-    if(!user){
-        return next(new AppError('Email invalido!!', 404));
-    }
-
-    // gera token de confirm o reset
-    const resetToken = user.resetPassResetToken();
-    //console.log(resetToken);
-    await user.save({ validateBeforeSave: false });
-
-    // manda email de resp
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetPass/${resetToken}`;
-
-    const message = `Esquceu a senha? Mandei um PATCH request para ${resetUrl}.\n
-    Se nao esquceu sua senha, desconcidere este email!`
-  
-try{
-    await sendEmail({
-        email: user.email,
-        subject: 'Seu token para resetar a senha vale só por 10 minutos',
-        message
-    });
-    console.log('Passou!!');
-
-    res.status(200).json({
-        status: 'success',
-        message: 'Token mandado para o email'
-    });
-}catch(err){
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
-    await user.save({ validateBeforeSave: false });
-
-    //console.log(err);
-    return next(new AppError('Houve algum problema para mandar o email, tente depois', 500));
-}
-    // manda email de resp
-
-});
-
-const resetPass = catchAsync( async (req, res, next ) =>{
-    // identifica o user baseado no token do DB
-    const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
-    const user = await User.findOne({passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now()}});
-
-    //console.log(user);
-
-    // verifica se o token ñ expirou e salva o novo pass
-    if(!user){
-        return next(new AppError('Token invalido ou expirado!', 400));
-    }
-
-    // reset pass 
-    user.password = req.body.password;
-    user.passwordConfirm = req.body.passwordConfirm;
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
-    await user.save();
-
-    // update passwordChanged (model)
-
-    // loga o user e manda o jwt novo 
-    createSendToken(user, 201, res);
-
-});
 
 const updatePass = catchAsync( async(req, res, next) => {
     // pega user do DB
@@ -249,8 +182,6 @@ module.exports = {
     logout,
     protectRoutes,
     rolesForUsers,
-    forgotPass,
-    resetPass,
-    updatePass,
-    renderForOnlyLoggued
+    updatePass
+    //renderForOnlyLoggued
 }; 

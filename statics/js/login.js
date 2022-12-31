@@ -15,7 +15,7 @@ export const login = async(email, password) =>{
         if(res.data.status === 'success'){
             showAlert('success', 'Logado com sucesso');
             window.setTimeout(() => {
-                location.assign('beers');
+                location.assign('logado');
             }, 1500);
         }
 

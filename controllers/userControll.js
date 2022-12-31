@@ -24,7 +24,7 @@ const updateUserNew = catchAsync( async(req, res, next) =>{
         return next(new AppError('Você não pode atualizar a senha aqui!', 400));
     }
 
-    // filtro  de fields que nao podem ser updated
+    // filtro  de fields que podem ser updateds
     const filterBody = filterObj(req.body, 'name', 'email')
 
     // update user
@@ -41,17 +41,7 @@ const updateUserNew = catchAsync( async(req, res, next) =>{
     })
 });
 
-const deleteUserNew = catchAsync( async (req, res, next) =>{
-    await User.findByIdAndUpdate(req.user.id, { active: false });
-
-    res.status(204).json({
-      status: 'success',
-      data: null
-    });
-});
-
-
-// Functions apenas para Admins
+// Functions para api apenas Admins
 const getAllUsers =  Factory.getAll(User);
 const getOneUser = Factory.getOne(User);
 const updateUser = Factory.updateOne(User);
@@ -62,7 +52,6 @@ module.exports = {
     getAllUsers,
     getOneUser,
     updateUserNew,
-    deleteUserNew,
     deleteUser,
     updateUser,
     userAtual

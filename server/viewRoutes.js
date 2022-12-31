@@ -13,6 +13,12 @@ router.get('/login', async(req, res) =>{
     });
 });
 
+router.get('/logado', (req, res) =>{
+    res.status(200).render('logado', {
+        title: 'Só isso',
+    });
+});
+
 // router.get('/me', authController.protectRoutes, (req, res) =>{
 //     res.status(200).render('usraccount', {
 //         title: 'Minha Conta'
