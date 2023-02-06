@@ -1,8 +1,27 @@
 # loginPageJs
 
-##### Da saga: aproveitando um projeto até secar...
-Essa é uma página de login simples feita com base no mesmo projeto da beerApiJS, com o intuito de agregar no portifólio de dev
+Essa é uma api de auttenticação feita com base no mesmo projeto da beerApiJS, com o intuito de agregar no portifólio de dev
 
-### Building...
+> WORKFLOW:        
+**REQUEST --> app.js --> Routes --> Controllers --> RESPONSE ...**
 
-![print](https://github.com/geleiaa/loginPageJs/blob/main/print/loginpage.png)
+> ERROR WORKFLOW:
+**REQUEST --> app.js --> errorControll.js --> RESPONSE ...**
+
+> AUTH WORKFLOW:
+
+* ##### SIGNIN --> create jwt --> header-authorization && cookie --> registred/logued
+
+* ##### LOGIN --> create jwt --> cookie --> logued
+
+
+* **PROTECT ROUTES** --> user logued --> verify headers (authControll.js) --> verify jwt --> authorized ...
+
+
+* **UPDATE PASS** --> find user + pass no DB --> comparePassword --> update e save new pass  
+
+* **RESET PASS** --> genarete new token --> verify db token --> create jwt --> save new pass
+                
+* **FORGOT PASS** --> find user --> resetPassResetToken --> send email ...
+
+<!-- ![print](https://github.com/geleiaa/loginPageJs/blob/main/print/loginpage.png) -->
